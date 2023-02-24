@@ -1,6 +1,8 @@
 package com.mischiefsmp.maps.commands
 
+import com.mischiefsmp.maps.Utils
 import org.bukkit.Material
+import org.bukkit.Sound
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
@@ -27,22 +29,15 @@ class ImageMapCommand: CommandExecutor {
         if(sender is ConsoleCommandSender) return false
 
         if(sender is Player) {
-            val image = ImageIO.read(URL(args[0]))
-
-            sender.server.createMap(sender.world).also { mapView ->
-                mapView.scale = MapView.Scale.FARTHEST
-                mapView.isLocked = true
-                mapView.addRenderer(ImageMapRenderer(image.getScaledInstance(2048, 2048, 0)))
-
-                ItemStack(Material.FILLED_MAP).also { item ->
-                    item.itemMeta = (item.itemMeta as MapMeta).also { meta ->
-                        meta.mapView = mapView
-                        meta.isScaling = true
-                    }
-                    sender.inventory.addItem(item)
-                }
-                sender.sendMap(mapView)
+            if(sender.inventory.itemInMainHand.type != Material.FILLED_MAP) {
+                if(sender.inventory.itemInMainHand.type != Material.AIR) return false
+                sender.inventory.setItemInMainHand(ItemStack(Material.FILLED_MAP))
             }
+
+            val image = ImageIO.read(URL(args[0])).getScaledInstance(128, 128, 0)
+            Utils.setMapImage(sender.inventory.itemInMainHand, image, sender.world)
+
+            sender.playSound(sender.location, Sound.ITEM_BOOK_PAGE_TURN, 1F, 1F)
 
             return true
         }
