@@ -11,6 +11,7 @@ class MischiefMaps: JavaPlugin() {
 
     override fun onEnable() {
         getCommand("imagemap")!!.setExecutor(ImageMapCommand())
+        server.pluginManager.registerEvents(MapListener(), this)
     }
 
     companion object {
