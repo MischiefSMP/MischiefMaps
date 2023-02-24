@@ -5,9 +5,9 @@ main: com.mischiefsmp.maps.MischiefMaps
 api-version: 1.19
 website: wollinger.io
 commands:
-  mapimage:
-    description: Map Image
-    usage: "/mapimage <url>"
+  imagemap:
+    description: "Map Image"
+    usage: "/imagemap <url>"
 permissions:
-  maps.mapimage:
+  maps.imagemap:
     default: false
