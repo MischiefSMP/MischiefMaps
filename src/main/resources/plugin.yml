@@ -1,0 +1,13 @@
+name: MischiefMaps
+version: $version
+author: sven@wollinger.email
+main: com.mischiefsmp.maps.MischiefMaps
+api-version: 1.19
+website: wollinger.io
+commands:
+  mapimage:
+    description: Map Image
+    usage: "/mapimage <url>"
+permissions:
+  maps.mapimage:
+    default: false
