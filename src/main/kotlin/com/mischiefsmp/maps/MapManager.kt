@@ -10,6 +10,7 @@ import org.bukkit.map.MapView
 import java.awt.Image
 import java.awt.image.BufferedImage
 import java.io.File
+import java.net.URL
 import javax.imageio.ImageIO
 
 class ImageMapRenderer(private var image: Image): MapRenderer() {
@@ -24,6 +25,10 @@ object MapManager {
 
     init {
         folder.mkdirs()
+    }
+
+    fun setMapImage(item: ItemStack, url: String, saveOnDisk: Boolean) {
+        setMapImage(item, ImageIO.read(URL(url)).getScaledInstance(128, 128, 0), saveOnDisk)
     }
 
     fun setMapImage(item: ItemStack, image: Image, saveOnDisk: Boolean) {

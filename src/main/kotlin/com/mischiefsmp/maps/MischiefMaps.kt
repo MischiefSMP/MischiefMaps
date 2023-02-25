@@ -1,6 +1,7 @@
 package com.mischiefsmp.maps
 
 import com.mischiefsmp.maps.commands.ImageMapCommand
+import com.mischiefsmp.maps.commands.MapCommand
 import org.bukkit.plugin.java.JavaPlugin
 
 class MischiefMaps: JavaPlugin() {
@@ -11,6 +12,7 @@ class MischiefMaps: JavaPlugin() {
 
     override fun onEnable() {
         getCommand("imagemap")!!.setExecutor(ImageMapCommand())
+        getCommand("map")!!.setExecutor(MapCommand())
         server.pluginManager.registerEvents(MapListener(), this)
     }
 

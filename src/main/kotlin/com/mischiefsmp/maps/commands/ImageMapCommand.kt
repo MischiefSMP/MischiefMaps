@@ -26,8 +26,7 @@ class ImageMapCommand: CommandExecutor {
                     sender.inventory.setItemInMainHand(ItemStack(Material.FILLED_MAP))
                 }
 
-                val image = ImageIO.read(URL(args[0])).getScaledInstance(128, 128, 0)
-                MapManager.setMapImage(sender.inventory.itemInMainHand, image, true)
+                MapManager.setMapImage(sender.inventory.itemInMainHand, args[0], true)
 
                 sender.playSound(sender.location, Sound.ITEM_BOOK_PAGE_TURN, 1F, 1F)
 
